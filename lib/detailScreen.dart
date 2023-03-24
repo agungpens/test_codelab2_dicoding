@@ -19,9 +19,9 @@ class DetailScreen extends StatelessWidget {
               'Farm House Lembang',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 30.0,
-                fontFamily: 'Staatliches',
-              ),
+                  fontSize: 30.0,
+                  fontFamily: 'Staatliches',
+                  fontWeight: FontWeight.bold),
             ),
           ),
           Container(
@@ -35,8 +35,7 @@ class DetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text('Open Everyday',
-                        style: informationText.copyWith(fontSize: 16.0)),
+                    Text('Open Everyday', style: informationText),
                   ],
                 ),
                 Column(
@@ -45,8 +44,7 @@ class DetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text('09.00 - 17.00',
-                        style: informationText.copyWith(fontSize: 16.0)),
+                    Text('09.00 - 17.00', style: informationText),
                   ],
                 ),
                 Column(
@@ -55,8 +53,7 @@ class DetailScreen extends StatelessWidget {
                     SizedBox(
                       height: 8.0,
                     ),
-                    Text('IDR 50.000',
-                        style: informationText.copyWith(fontSize: 16.0)),
+                    Text('IDR 50.000', style: informationText),
                   ],
                 ),
               ],
