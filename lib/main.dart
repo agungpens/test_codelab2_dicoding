@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_codelab_1/detailScreen.dart';
+import 'package:test_codelab_1/mainScreen.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Wisata Bandung',
       theme: ThemeData(),
-      home: DetailScreen(),
+      home: MainScreen(),
     );
   }
 }
