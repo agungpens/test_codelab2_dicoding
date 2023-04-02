@@ -1,105 +1,168 @@
 import 'package:flutter/material.dart';
+import 'package:test_codelab_1/tourismPlace.Dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({super.key});
+  final TourismPlace place;
+  DetailScreen({required this.place});
 
   @override
   Widget build(BuildContext context) {
-    var informationText = TextStyle(fontFamily: 'Oxygen');
+    var informationText = TextStyle(fontFamily: 'Oxygen', color: Colors.white);
     return Scaffold(
-        body: SafeArea(
-            child: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Image.asset('assets/images/farmhouse-lembang.jpg'),
-          Container(
-            margin: EdgeInsets.only(top: 16.0),
-            child: Text(
-              'Farm House Lembang',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 30.0,
-                  fontFamily: 'Staatliches',
-                  fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Column(
-                  children: [
-                    Icon(Icons.calendar_today),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    Text('Open Everyday', style: informationText),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.access_time),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    Text('09.00 - 17.00', style: informationText),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Icon(Icons.monetization_on),
-                    SizedBox(
-                      height: 8.0,
-                    ),
-                    Text('IDR 50.000', style: informationText),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.all(16.0),
-            child: Text(
-                'Berada dijalan bandung , Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sodales  adipiscing elit. Aenean sodales pretiumconsectetur adipiscing elit. Aenean sodales pretium consectetur adipiscing elit. Aenean sodales pretium consectetur adipiscing elit. Aenean sodales pretium',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16.0)),
-          ),
-          Container(
-            height: 150,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
+      backgroundColor: Colors.black,
+      body: SafeArea(
+        child: ListView(
+          children: <Widget>[
+            Stack(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                        'https://res.klook.com/image/upload/c_fill,w_843,h_474/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/yhupwfwk3vdq8olkokva.webp'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                        'https://res.klook.com/image/upload/fl_lossy.progressive,q_65/w_800/activities/uziqq6fskmobrokwlu2a.webp'),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                        'https://res.klook.com/image/upload/c_fill,w_843,h_474/q_80/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/yhupwfwk3vdq8olkokva.webp'),
+                Image.asset(place.imageAsset),
+                SafeArea(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: Icon(Icons.arrow_back),
+                        color: Colors.white,
+                      ),
+                      FavoriteButton(),
+                    ],
                   ),
                 ),
               ],
             ),
-          )
-        ],
+            Container(
+              margin: EdgeInsets.only(top: 16),
+              child: Text(
+                place.name,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'Staatliches',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.calendar_today,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        place.openDays,
+                        style: informationText,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.access_time,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        place.openTime,
+                        style: informationText,
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.monetization_on,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        place.ticketPrice,
+                        style: informationText,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 16),
+              child: Text(
+                'About Place',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30,
+                  fontFamily: 'Staatliches',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.all(32),
+              child: Text(
+                place.description,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  fontFamily: 'Oxygen',
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            Container(
+              height: 150,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: place.imageUrls.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.network(place.imageUrls[index]),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
-    )));
+    );
+  }
+}
+
+class FavoriteButton extends StatefulWidget {
+  @override
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+        onPressed: () {
+          setState(() {
+            isFavorite = !isFavorite;
+          });
+        },
+        icon: Icon(
+          isFavorite ? Icons.favorite : Icons.favorite_border,
+          color: Colors.red,
+        ));
   }
 }
